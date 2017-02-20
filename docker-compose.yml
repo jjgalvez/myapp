@@ -1,0 +1,18 @@
+version: "2"
+services:
+  flask:
+    image: jjgalvez/hohbackend
+    ports:
+      - 5050:5050
+      - 5000:5000
+  web:
+    image: jjgalvez/atest
+    volumes:
+      - conf.d:/opt/docker/etc/nginx/vhost.common.d
+    ports:
+      - 8080:80
+    depends_on:
+      - flask
+
+volumes:
+  conf.d:
